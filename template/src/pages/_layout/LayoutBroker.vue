@@ -2,7 +2,7 @@
   <transition>
     <component{{#isAuth}} v-if="$auth.isLoaded()"{{/isAuth}} :is="currentLayout">
       <router-view></router-view>
-      {{#if isAuth && isVueProgress}}
+      {{#if isAuth isVueProgress}}
       <vue-progress-bar/>
       {{/if}}
     </component>
