@@ -34,7 +34,8 @@ export default {
     currentLayout () {
       return this.$route.meta.layout
     }
-  }{{if_and isAuth isVueProgress}},
+  }{{if_and isAuth isVueProgress}},{{/if_and}}
+  {{if_and isAuth isVueProgress}}
   created () {
     this.loadData()
   },
