@@ -36,9 +36,7 @@ export default {
     }
   },
   created () {
-  {{if_and isAuth isVueProgress}}
     this.loadData()
-  {{/if_and}}
   },
   methods: {
     loadData () {
