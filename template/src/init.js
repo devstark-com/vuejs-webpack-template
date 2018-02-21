@@ -4,12 +4,13 @@ import Vue from 'vue'
 import _ from 'lodash'
 import VueMeta from 'vue-meta'
 import ApiPlugin from '@/modules/api/plugin.js'
-{{#if_or isVuexStore isAuth}}
+{{#if_or isAuth isVuexStore}}
 import store from '@/vuex'
 {{/if_or}}
 {{#if_or isSmartForm isVuelidate}}
 import Vuelidate from 'vuelidate'
-{{#if_or}}
+{{/if_or}}
+{{#isSmartForm}}
 import VueSmartForm from 'vue-smart-form'
 {{/isSmartForm}}
 {{#isLiteKit}}
