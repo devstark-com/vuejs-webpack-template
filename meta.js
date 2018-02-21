@@ -31,7 +31,7 @@ module.exports = {
       return templateVersion
     },
   },
-  
+
   prompts: {
     name: {
       when: 'isNotTest',
@@ -51,28 +51,35 @@ module.exports = {
       type: 'string',
       message: 'Author',
     },
-    build: {
-      when: 'isNotTest',
-      type: 'list',
-      message: 'Vue build',
-      choices: [
-        {
-          name: 'Runtime + Compiler: recommended for most users',
-          value: 'standalone',
-          short: 'standalone',
-        },
-        {
-          name:
-            'Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere',
-          value: 'runtime',
-          short: 'runtime',
-        },
-      ],
-    },
-    router: {
+    isSmartForm: {
       when: 'isNotTest',
       type: 'confirm',
-      message: 'Install vue-router?',
+      message: 'Install vue-smart-form with vuelidate?',
+    },
+    isVuelidate: {
+      when: 'isNotTest && !isSmartForm',
+      type: 'confirm',
+      message: 'Install vuelidate (without vue-smart-form)?',
+    },
+    isLiteKit: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install vue-lite-kit?',
+    },
+    isAuth: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Should users be able to sign in?',
+    },
+    isVuexStore: {
+      when: 'isNotTest && !isAuth',
+      type: 'confirm',
+      message: 'Install vuex?',
+    },
+    assetsStructure: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Create assets folders base structure?',
     },
     lint: {
       when: 'isNotTest',
@@ -169,7 +176,8 @@ module.exports = {
     'test/unit/specs/index.js': "unit && runner === 'karma'",
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
-    'src/router/**/*': 'router',
+    'src/assets/**/*': 'assetsStructure',
+    'src/vuex/**/*': 'isVuexStore',
   },
   complete: function(data, { chalk }) {
     const green = chalk.green

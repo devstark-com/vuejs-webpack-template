@@ -1,34 +1,31 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    {{#router}}
-    <router-view/>
-    {{else}}
-    <HelloWorld/>
-    {{/router}}
+  <div id="app" :class="appClasses">
+    <LayoutBroker />
   </div>
 </template>
-
 <script>
-{{#unless router}}
-import HelloWorld from './components/HelloWorld'
-
-{{/unless}}
+import { get } from 'lodash'
+import LayoutBroker from '@/pages/common/LayoutBroker.vue'
 export default {
-  name: 'App'{{#router}}{{else}},
+  name: 'App',
   components: {
-    HelloWorld
-  }{{/router}}
+    LayoutBroker
+  },
+  computed: {
+    /*
+    * add classes from a route meta.appClasses key
+    * @see @/modules/router/routes.js for the usage details
+    */
+    appClasses () {
+      const routeAppClasses = get(this.$route, 'meta.appClasses')
+      if (!routeAppClasses) return []
+      if (typeof routeAppClasses === 'function') return routeAppClasses(this.$route)
+      if (typeof routeAppClasses === 'string') routeAppClasses.split(' ')
+      return routeAppClasses // array or object
+    }
+  }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+{{#assetsStructure}}
+<style src='./assets/css/main.scss' lang='scss'></style>
+{{/assetsStructure}}
