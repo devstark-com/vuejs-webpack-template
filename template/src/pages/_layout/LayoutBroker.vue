@@ -39,6 +39,7 @@ export default {
   created () {
     this.loadData()
   },
+  {{/if_and}}
   methods: {
     loadData () {
       this.$Progress.start()
@@ -47,6 +48,5 @@ export default {
         .catch(() => this.$Progress.fail())
     }
   }
-  {{/if_and}}
 }
 </script>
