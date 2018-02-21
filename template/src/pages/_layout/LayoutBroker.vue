@@ -35,11 +35,11 @@ export default {
       return this.$route.meta.layout
     }
   },
-  {{if_and isAuth isVueProgress}}
   created () {
+  {{if_and isAuth isVueProgress}}
     this.loadData()
-  },
   {{/if_and}}
+  },
   methods: {
     loadData () {
       this.$Progress.start()
