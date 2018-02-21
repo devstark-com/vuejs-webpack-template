@@ -1,7 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import _ from 'lodash'
+import router from '@/modules/router'
 import VueMeta from 'vue-meta'
 import ApiPlugin from '@/modules/api/plugin.js'
 {{#if_or isAuth isVuexStore}}
@@ -22,6 +22,10 @@ import apiClient from '@/modules/api/client'
 import apiDriver from '@/modules/auth/apiDriver'
 import clientDriver from '@/modules/auth/clientDriver'
 {{/isAuth}}
+{{#isVueProgress}}
+import VueProgressBar from 'vue-progressbar'
+{{/isVueProgress}}
+import App from '@/App'
 export default {
 
   conf: null,

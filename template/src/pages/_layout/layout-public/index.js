@@ -1,2 +1,2 @@
-import LayoutPublic from  './LayoutPublic.vue'
+import LayoutPublic from './LayoutPublic.vue'
 export default LayoutPublic
