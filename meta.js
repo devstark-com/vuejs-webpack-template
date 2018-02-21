@@ -112,12 +112,18 @@ module.exports = {
       when: 'isNotTest',
       type: 'confirm',
       message: 'Set up unit tests',
+      default: false
     },
     runner: {
       when: 'isNotTest && unit',
       type: 'list',
       message: 'Pick a test runner',
       choices: [
+        {
+          name: 'none (configure it yourself)',
+          value: 'noTest',
+          short: 'noTest',
+        },
         {
           name: 'Jest',
           value: 'jest',
@@ -128,17 +134,13 @@ module.exports = {
           value: 'karma',
           short: 'karma',
         },
-        {
-          name: 'none (configure it yourself)',
-          value: 'noTest',
-          short: 'noTest',
-        },
       ],
     },
     e2e: {
       when: 'isNotTest',
       type: 'confirm',
       message: 'Setup e2e tests with Nightwatch?',
+      default: false
     },
     autoInstall: {
       when: 'isNotTest',
@@ -146,6 +148,11 @@ module.exports = {
       message:
         'Should we run `npm install` for you after the project has been created? (recommended)',
       choices: [
+        {
+          name: 'No, I will handle that myself',
+          value: false,
+          short: 'no',
+        },
         {
           name: 'Yes, use NPM',
           value: 'npm',
@@ -155,11 +162,6 @@ module.exports = {
           name: 'Yes, use Yarn',
           value: 'yarn',
           short: 'yarn',
-        },
-        {
-          name: 'No, I will handle that myself',
-          value: false,
-          short: 'no',
         },
       ],
     },
@@ -177,7 +179,7 @@ module.exports = {
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
     'src/assets/**/*': 'assetsStructure',
-    'src/vuex/**/*': 'isVuexStore',
+    'src/vuex/**/*': 'isAuth || isVuexStore',
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
