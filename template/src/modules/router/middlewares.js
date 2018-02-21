@@ -69,7 +69,7 @@ export const redirectIfAuthenticated = (redirect = '/') => (to, from, next) => {
     })
 }
 {{/isAuth}}
-{{#!isAuth}}
+{{#if_eq isAuth false}}
 export const beforeEach = (to, from, next) => { next() }
 export const afterEach = (to, from) => { //... }
-{{/!isAuth}}
+{{/if_eq}}
