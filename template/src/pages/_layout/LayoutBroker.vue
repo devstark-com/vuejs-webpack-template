@@ -38,6 +38,8 @@ export default {
   created () {
     this.loadData()
   },
+  {{/if_and}}
+  {{#if_and isAuth isVueProgress}}
   methods: {
     loadData () {
       this.$Progress.start()
@@ -45,6 +47,7 @@ export default {
         .then(() => this.$Progress.finish())
         .catch(() => this.$Progress.fail())
     }
-  }{{/if_and}}
+  }
+  {{/if_and}}
 }
 </script>

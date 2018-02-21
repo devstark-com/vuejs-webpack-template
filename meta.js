@@ -72,7 +72,7 @@ module.exports = {
       message: 'Add authentication?',
     },
     isVueProgress: {
-      when: 'isNotTest && isAuth',
+      when: 'isNotTest',
       type: 'confirm',
       message: 'Add vue-progressbar?',
     },
