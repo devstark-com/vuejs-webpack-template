@@ -2,9 +2,11 @@
   <transition>
     <component{{#isAuth}} v-if="$auth.isLoaded()"{{/isAuth}} :is="currentLayout">
       <router-view></router-view>
-      {{#if isAuth isVueProgress}}
+      {{#isAuth}}
+      {{#isVueProgress}}
       <vue-progress-bar/>
-      {{/if}}
+      {{/isVueProgress}}
+      {{/isAuth}}
     </component>
     {{#isAuth}}
     <AppLoader v-else />
@@ -34,7 +36,7 @@ export default {
     currentLayout () {
       return this.$route.meta.layout
     }
-  },
+  }{{#isAuth}}{{#isVueProgress}},
   created () {
     this.loadData()
   },
@@ -45,6 +47,6 @@ export default {
         .then(() => this.$Progress.finish())
         .catch(() => this.$Progress.fail())
     }
-  }
+  }{{/isVueProgress}}{{/isAuth}}
 }
 </script>
