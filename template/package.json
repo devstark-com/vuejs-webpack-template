@@ -33,7 +33,7 @@
     "vue-authenticate-service": "^0.5.0",
     {{/isAuth}}
     {{#isLiteKit}}
-    "vue-lite-kit": "^0.0.1",
+    "vue-lite-kit": "^0.0.2",
     {{/isLiteKit}}
     "vue-meta": "^1.4.2",
     {{#isVueProgress}}
