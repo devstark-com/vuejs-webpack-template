@@ -69,7 +69,12 @@ module.exports = {
     isAuth: {
       when: 'isNotTest',
       type: 'confirm',
-      message: 'Should users be able to sign in?',
+      message: 'Add authentication?',
+    },
+    isVueProgress: {
+      when: 'isNotTest && isAuth',
+      type: 'confirm',
+      message: 'Add vue-progressbar?',
     },
     isVuexStore: {
       when: 'isNotTest && !isAuth',

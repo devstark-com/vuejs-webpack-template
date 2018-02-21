@@ -36,6 +36,9 @@
     "vue-lite-kit": "^0.0.1",
     {{/isLiteKit}}
     "vue-meta": "^1.4.2",
+    {{#isVueProgress}}
+    "vue-progressbar": "^0.7.3",
+    {{/isVueProgress}}
     "vue-router": "^3.0.1",
     {{#isSmartForm}}
     "vue-smart-form": "^0.0.2",

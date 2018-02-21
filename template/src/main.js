@@ -24,4 +24,7 @@ Init
   {{#isAuth}}
   .addVueAuthService()
   {{/isAuth}}
+  {{#isVueProgress}}
+  .addVueProgressBar()
+  {{/isVueProgress}}
   .run()

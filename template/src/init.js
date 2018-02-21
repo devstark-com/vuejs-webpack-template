@@ -105,6 +105,21 @@ export default {
   },
   {{/isLiteKit}}
 
+  {{#isVueProgress}}
+  /**
+   * Register VueProgressBar plugin
+   * http://hilongjw.github.io/vue-progressbar/index.html
+   */
+  addVueProgressBar () {
+    Vue.use(VueProgressBar, {
+      color: 'rgb(143, 255, 199)',
+      failedColor: 'red',
+      height: '2px'
+    })
+    return this
+  },
+  {{/isVueProgress}}
+
   /**
    * Add VueRouter
    * http://router.vuejs.org/en/index.html
