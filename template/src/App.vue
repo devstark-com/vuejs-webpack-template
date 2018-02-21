@@ -5,7 +5,7 @@
 </template>
 <script>
 import { get } from 'lodash'
-import LayoutBroker from '@/pages/common/LayoutBroker.vue'
+import LayoutBroker from '@/pages/_layout/LayoutBroker.vue'
 export default {
   name: 'App',
   components: {

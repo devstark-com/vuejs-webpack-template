@@ -179,6 +179,9 @@ module.exports = {
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
     'src/assets/**/*': 'assetsStructure',
+    'src/modules/auth/**/*': 'isAuth',
+    'src/pages/_layout/layout-account/**/*': 'isAuth',
+    'src/pages/account/**/*': 'isAuth',
     'src/vuex/**/*': 'isAuth || isVuexStore',
   },
   complete: function(data, { chalk }) {
