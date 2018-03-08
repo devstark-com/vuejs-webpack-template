@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import router from '@/modules/router'
 import VueMeta from 'vue-meta'
-import ApiPlugin from '@/modules/api/plugin.js'
+import api from '@/modules/api/'
 {{#if_or isAuth isVuexStore}}
 import store from '@/vuex'
 {{/if_or}}
@@ -137,8 +137,7 @@ export default {
    * Add API service
    */
   addApiPlugin () {
-    Vue.use(ApiPlugin)
-    this.api = ApiPlugin.service
+    this.api = api
     return this
   },
 

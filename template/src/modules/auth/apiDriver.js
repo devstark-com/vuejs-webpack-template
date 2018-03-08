@@ -1,11 +1,7 @@
-const retrieveTokens = (resonse) => {
-  return { accessToken: resonse.data.token, refreshToken: resonse.data.refresh_token }
-}
-
 const apiDriver = (api, store) => {
   return {
-    login: (creds) => api.signIn(creds).then(retrieveTokens),
-    refresh: (refreshToken) => api.refresh({ data: { refresh_token: refreshToken } }).then(retrieveTokens),
+    login: (creds) => api.signIn(creds).then(r => r.data),
+    refresh: (refreshToken) => api.refresh({ data: { refreshToken } }).then(r => r.data),
     user: () => store.dispatch('app/loadUserData')
   }
 }

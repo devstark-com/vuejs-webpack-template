@@ -10,6 +10,6 @@ export default {
   },
 
   api: {
-    baseURL: 'https://...'
+    baseURL: 'http://localhost:3000'
   }
 }

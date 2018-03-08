@@ -29,6 +29,7 @@
     "es6-promise": "^4.2.4",
     "es6-shim": "^0.35.3",
     "vue": "^2.5.2",
+    "vue-api-service": "^0.1.2",
     {{#isAuth}}
     "vue-authenticate-service": "^0.5.0",
     {{/isAuth}}

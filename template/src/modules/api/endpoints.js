@@ -1,8 +1,12 @@
+/**
+* @see: https://www.npmjs.com/package/vue-api-service#usage
+*/
+
 export default {
 
   /**
-   *  @request { _username, _password }
-   *  @response { token, refresh_token }
+   *  @request { username, password }
+   *  @response { accessToken, refreshToken }
    */
   signIn: {
     method: 'POST',
@@ -10,13 +14,13 @@ export default {
   },
 
   /**
-   *  Refresh JWT access token
-   *  @request { refresh_token }
-   *  @response { token, refresh_token }
+   *  Refresh JWT tokens
+   *  @request { refreshToken }
+   *  @response { accessToken, refreshToken }
    */
   refresh: {
     method: 'POST',
-    url: '/auth/token/refresh'
+    url: '/auth/refresh'
   },
 
   /**
