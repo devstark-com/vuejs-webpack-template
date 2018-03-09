@@ -27,5 +27,5 @@ export default {
 }
 </script>
 {{#assetsStructure}}
-<style src='./assets/css/main.scss' lang='scss'></style>
+<style src='@/assets/css/main.scss' lang='scss'></style>
 {{/assetsStructure}}
