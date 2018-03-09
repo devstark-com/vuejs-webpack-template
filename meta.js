@@ -31,7 +31,7 @@ module.exports = {
       return templateVersion
     },
   },
-  
+
   prompts: {
     name: {
       when: 'isNotTest',
@@ -51,28 +51,40 @@ module.exports = {
       type: 'string',
       message: 'Author',
     },
-    build: {
-      when: 'isNotTest',
-      type: 'list',
-      message: 'Vue build',
-      choices: [
-        {
-          name: 'Runtime + Compiler: recommended for most users',
-          value: 'standalone',
-          short: 'standalone',
-        },
-        {
-          name:
-            'Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere',
-          value: 'runtime',
-          short: 'runtime',
-        },
-      ],
-    },
-    router: {
+    isSmartForm: {
       when: 'isNotTest',
       type: 'confirm',
-      message: 'Install vue-router?',
+      message: 'Install vue-smart-form with vuelidate?',
+    },
+    isVuelidate: {
+      when: 'isNotTest && !isSmartForm',
+      type: 'confirm',
+      message: 'Install vuelidate (without vue-smart-form)?',
+    },
+    isLiteKit: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install vue-lite-kit?',
+    },
+    isAuth: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Add authentication?',
+    },
+    isVueProgress: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Add vue-progressbar?',
+    },
+    isVuexStore: {
+      when: 'isNotTest && !isAuth',
+      type: 'confirm',
+      message: 'Install vuex?',
+    },
+    assetsStructure: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Create assets folders base structure?',
     },
     lint: {
       when: 'isNotTest',
@@ -101,16 +113,28 @@ module.exports = {
         },
       ],
     },
+    storybook: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Setup Storybook support',
+      default: true
+    },
     unit: {
       when: 'isNotTest',
       type: 'confirm',
       message: 'Set up unit tests',
+      default: false
     },
     runner: {
       when: 'isNotTest && unit',
       type: 'list',
       message: 'Pick a test runner',
       choices: [
+        {
+          name: 'none (configure it yourself)',
+          value: 'noTest',
+          short: 'noTest',
+        },
         {
           name: 'Jest',
           value: 'jest',
@@ -121,17 +145,13 @@ module.exports = {
           value: 'karma',
           short: 'karma',
         },
-        {
-          name: 'none (configure it yourself)',
-          value: 'noTest',
-          short: 'noTest',
-        },
       ],
     },
     e2e: {
       when: 'isNotTest',
       type: 'confirm',
       message: 'Setup e2e tests with Nightwatch?',
+      default: false
     },
     autoInstall: {
       when: 'isNotTest',
@@ -139,6 +159,11 @@ module.exports = {
       message:
         'Should we run `npm install` for you after the project has been created? (recommended)',
       choices: [
+        {
+          name: 'No, I will handle that myself',
+          value: false,
+          short: 'no',
+        },
         {
           name: 'Yes, use NPM',
           value: 'npm',
@@ -148,11 +173,6 @@ module.exports = {
           name: 'Yes, use Yarn',
           value: 'yarn',
           short: 'yarn',
-        },
-        {
-          name: 'No, I will handle that myself',
-          value: false,
-          short: 'no',
         },
       ],
     },
@@ -169,7 +189,12 @@ module.exports = {
     'test/unit/specs/index.js': "unit && runner === 'karma'",
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
-    'src/router/**/*': 'router',
+    'src/assets/**/*': 'assetsStructure',
+    'src/modules/auth/**/*': 'isAuth',
+    'src/pages/_layout/layout-account/**/*': 'isAuth',
+    'src/pages/account/**/*': 'isAuth',
+    'src/vuex/**/*': 'isAuth || isVuexStore',
+    '.storybook/**/*': 'storybook',
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
