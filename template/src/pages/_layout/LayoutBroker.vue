@@ -1,0 +1,52 @@
+<template>
+  <transition>
+    <component{{#isAuth}} v-if="$auth.isLoaded()"{{/isAuth}} :is="currentLayout">
+      <router-view></router-view>
+      {{#isAuth}}
+      {{#isVueProgress}}
+      <vue-progress-bar/>
+      {{/isVueProgress}}
+      {{/isAuth}}
+    </component>
+    {{#isAuth}}
+    <AppLoader v-else />
+    {{/isAuth}}
+  </transition>
+</template>
+<script>
+{{#isAuth}}
+import AppLoader from '@/pages/common/app-loader/'
+import LayoutAccount from '@/pages/_layout/layout-account/'
+{{/isAuth}}
+import LayoutPublic from '@/pages/_layout/layout-public/'
+export default {
+  name: 'LayoutBroker',
+  components: {
+    {{#isAuth}}
+    AppLoader,
+    LayoutAccount,
+    {{/isAuth}}
+    LayoutPublic
+  },
+  computed: {
+    /**
+     * Return layout component name for current route
+     * @return {string}
+     */
+    currentLayout () {
+      return this.$route.meta.layout
+    }
+  }{{#isAuth}}{{#isVueProgress}},
+  created () {
+    this.loadData()
+  },
+  methods: {
+    loadData () {
+      this.$Progress.start()
+      this.$auth.whenLoaded()
+        .then(() => this.$Progress.finish())
+        .catch(() => this.$Progress.fail())
+    }
+  }{{/isVueProgress}}{{/isAuth}}
+}
+</script>
