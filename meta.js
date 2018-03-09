@@ -113,6 +113,12 @@ module.exports = {
         },
       ],
     },
+    storybook: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Setup Storybook support',
+      default: true
+    },
     unit: {
       when: 'isNotTest',
       type: 'confirm',
@@ -188,6 +194,7 @@ module.exports = {
     'src/pages/_layout/layout-account/**/*': 'isAuth',
     'src/pages/account/**/*': 'isAuth',
     'src/vuex/**/*': 'isAuth || isVuexStore',
+    '.storybook/**/*': 'storybook',
   },
   complete: function(data, { chalk }) {
     const green = chalk.green

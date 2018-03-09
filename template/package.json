@@ -19,6 +19,9 @@
     {{#if_or unit e2e}}
     "test": "{{#unit}}npm run unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run e2e{{/e2e}}",
     {{/if_or}}
+    {{#storybook}}
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    {{/storybook}}
     {{#lint}}
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}",
     {{/lint}}
@@ -53,6 +56,13 @@
     "lodash": "^4.17.5"
   },
   "devDependencies": {
+    {{#storybook}}
+    "@storybook/addon-actions": "^3.3.15",
+    "@storybook/addon-knobs": "^3.3.15",
+    "@storybook/addon-links": "^3.3.15",
+    "@storybook/addon-notes": "^3.3.15",
+    "@storybook/vue": "^3.3.15",
+    {{/storybook}}
     {{#lint}}
     "babel-eslint": "^7.2.3",
     "eslint": "^4.15.0",
