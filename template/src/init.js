@@ -103,7 +103,7 @@ export default {
    */
   addVueLiteKit () {
     Vue.use(VueLiteKit, {
-      cPref: 'bbt'
+      cPref: 'lk'
     })
     return this
   },
