@@ -71,5 +71,5 @@ export const redirectIfAuthenticated = (redirect = '/') => (to, from, next) => {
 {{/isAuth}}
 {{#unless isAuth}}
 export const beforeEach = (to, from, next) => { next() }
-export const afterEach = (to, from) => { //... }
+export const afterEach = (to, from) => {}
 {{/unless}}
