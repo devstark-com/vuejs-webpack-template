@@ -29,10 +29,8 @@ import App from '@/App'
 export default {
 
   conf: null,
-  router: null,
-  {{#if_or isAuth isVuexStore}}
-  store: null,
-  {{/if_or}}
+  router: null,{{#if_or isAuth isVuexStore}}
+  store: null,{{/if_or}}
 
   /**
    * Setup application config
@@ -50,17 +48,15 @@ export default {
     Vue.config.productionTip = this.conf.vue.productionTip
     Vue.config.performance = this.conf.vue.performance
     return this
-  },
+  },{{#if_or isAuth isVuexStore}}
 
-  {{#if_or isAuth isVuexStore}}
   /**
    * Init store
    */
   addStore () {
     this.store = store
     return this
-  },
-  {{/if_or}}
+  },{{/if_or}}
 
   /**
    * Register VueMeta plugin
@@ -69,9 +65,8 @@ export default {
   addVueMeta () {
     Vue.use(VueMeta)
     return this
-  },
+  },{{#if_or isSmartForm isVuelidate}}
 
-  {{#if_or isSmartForm isVuelidate}}
   /**
    * Add Vuelidate validation library
    * https://monterail.github.io/vuelidate/#sub-installation
@@ -79,10 +74,8 @@ export default {
   addVuelidate () {
     Vue.use(Vuelidate)
     return this
-  },
-  {{/if_or}}
+  },{{/if_or}}{{#isSmartForm}}
 
-  {{#isSmartForm}}
   /*
    * Add VueSmartForm plugin
    * https://github.com/devstark-com/vue-smart-form
@@ -94,10 +87,8 @@ export default {
       }
     })
     return this
-  },
-  {{/isSmartForm}}
+  },{{/isSmartForm}}{{#isLiteKit}}
 
-  {{#isLiteKit}}
   /**
    * Add vue-lite-kit plugin
    */
@@ -106,10 +97,8 @@ export default {
       cPref: 'lk'
     })
     return this
-  },
-  {{/isLiteKit}}
+  },{{/isLiteKit}}{{#isVueProgress}}
 
-  {{#isVueProgress}}
   /**
    * Register VueProgressBar plugin
    * http://hilongjw.github.io/vue-progressbar/index.html
@@ -121,8 +110,7 @@ export default {
       height: '2px'
     })
     return this
-  },
-  {{/isVueProgress}}
+  },{{/isVueProgress}}
 
   /**
    * Add VueRouter
@@ -139,9 +127,8 @@ export default {
   addApiPlugin () {
     this.api = api
     return this
-  },
+  },{{#isAuth}}
 
-  {{#isAuth}}
   /**
    * Add Auth service
    */
@@ -156,8 +143,7 @@ export default {
     })
 
     return this
-  },
-  {{/isAuth}}
+  },{{/isAuth}}
 
   /**
    * Run application
