@@ -20,12 +20,15 @@ module.exports = {
   },
   helpers: {
     if_or(v1, v2, options) {
+      return (v1 || v2) ? options.fn(this) : options.inverse(this)
+      // if (v1 || v2) {
+      //   return options.fn(this)
+      // }
 
-      if (v1 || v2) {
-        return options.fn(this)
-      }
-
-      return options.inverse(this)
+      // return options.inverse(this)
+    },
+    if_and(v1, v2, options) {
+      return (v1 && v2) ? options.fn(this) : options.inverse(this)
     },
     template_version() {
       return templateVersion
