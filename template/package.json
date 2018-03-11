@@ -36,6 +36,7 @@
     {{#isAuth}}
     "vue-authenticate-service": "^0.5.0",
     {{/isAuth}}
+    "vue-layout-broker": "^0.0.3",
     {{#isLiteKit}}
     "vue-lite-kit": "^0.0.2",
     {{/isLiteKit}}
